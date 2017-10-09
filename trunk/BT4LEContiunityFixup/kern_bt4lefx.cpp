@@ -12,7 +12,6 @@
 
 
 static BT4LEFX *callbackBT4LEFX = nullptr;
-static KernelPatcher *callbackPatcher = nullptr;
 
 static const char *kextIOBluetoothFamily[] { "/System/Library/Extensions/IOBluetoothFamily.kext/Contents/MacOS/IOBluetoothFamily" };
 
@@ -28,7 +27,6 @@ bool BT4LEFX::init()
 	[](void *user, KernelPatcher &patcher, size_t index, mach_vm_address_t address, size_t size)
     {
 		callbackBT4LEFX = static_cast<BT4LEFX *>(user);
-        callbackPatcher = &patcher;
 		callbackBT4LEFX->processKext(patcher, index, address, size);
 	}, this);
 	
