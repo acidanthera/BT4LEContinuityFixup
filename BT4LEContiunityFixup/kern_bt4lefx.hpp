@@ -47,7 +47,7 @@ private:
 	struct ProcessingState {
 		enum {
 			NothingReady = 0,
-			IOBluetoothFamilyPatched = 2,
+			IOBluetoothFamilyPatched = 1,
 			EverythingDone = IOBluetoothFamilyPatched,
 		};
 	};
