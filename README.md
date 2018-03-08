@@ -9,9 +9,9 @@ Continuity features activated by this patch include Handoff, Instant Hotspot, an
 OS X 10.11 (El Capitan) dongle support is not stable yet! (https://github.com/dokterdok/Continuity-Activation-Tool/)
 
 #### Boot-args
-- "-bt4lefxoff" disables kext loading
-- "-bt4lefxdbg" turns on debugging output
-- "-bt4lefxbeta" enables loading on unsupported osx
+- `-bt4lefxoff` disables kext loading
+- `-bt4lefxdbg` turns on debugging output
+- `-bt4lefxbeta` enables loading on unsupported osx
 
 #### Credits
 - [Apple](https://www.apple.com) for macOS  
