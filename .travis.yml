@@ -1,0 +1,44 @@
+language: cpp
+
+env:
+  global:
+   - secure: "M9LaQJz+CyOb0+fZvyzk3liWqadXAysXSXN/1cRyoRMNVog/Tx7tfopvINQsqajIM5htslMBkf4dv/00DcBrJ3NRhgVAiYP3uw6r32aXwjpC7jtQETQpydjHTpuv00AUw+Chaza1zUJ5WQbJN4759xfiX/+sHi826osK4uBMdUWo1WOXulVvRoudyPLxk4mao8JVo0PBEgvX8ea2Gan343mVZf5xrT/WV+GqfFjdaS6emOuXh9nAvAD7k80+Ig0blwjtuzI4FLtFGvgbGm/EGJXJnVzU8E0c2UayM8BfKBJmj+ZjL9sQGYLz5iPg5bGpnJzlegIvQq+zWgx8J/ESHUKXR7DKz8qhCTTDuEKGdLsgo+AEits4A13fcxBKYpTLrl1vfFEzP1OB2dlDavmEQTEoH/3pcwCB3nK9QOpNgITELIRPKSXBETbB6LiWKXbSulSQkrnNB8B4NOsH0zPc+qYrzcsEtsW9r4XqDHUNx9SQ7Mpg9CJLhp7rsJi0EZBX46u/evASeI0lSjEINJVGfiJtBnMoEsLpcSmRgLOgCexiLRZFlwzclerYvq8ZENRZtAwiKTNh84sDTcVWUaNYR0syZFfltxiaHTnQqr/NzydrabT7M1GxJlUwaWtYKqnBBjNWeK/BHjWQvkFtln6obMDHL1koiKjfDxOcSQKhLsw="
+
+matrix:
+  include:
+  - os: osx
+    compiler: clang
+
+    script:
+      - src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/Lilu/master/Lilu/Scripts/bootstrap.sh) && eval "$src" || exit 1
+      - xcodebuild -configuration Debug
+      - xcodebuild -configuration Release
+      - xcodebuild analyze -quiet -configuration Debug CLANG_ANALYZER_OUTPUT=plist-html CLANG_ANALYZER_OUTPUT_DIR="$(pwd)/clang-analyze" && [ "$(find clang-analyze -name "*.html")" = "" ]
+      - xcodebuild analyze -quiet -configuration Release CLANG_ANALYZER_OUTPUT=plist-html CLANG_ANALYZER_OUTPUT_DIR="$(pwd)/clang-analyze" && [ "$(find clang-analyze -name "*.html")" = "" ]
+
+    deploy:
+      provider: releases
+      skip_cleanup: true
+      file: "build/*/*.zip"
+      file_glob: true
+      api_key:
+        secure: bdTFredgvbeqjCrWHJShi+NUox/RN5Gp90LONHDVDcdnstFfc0uQaSkoKYll6VWFCAw9M3BshQcd6KNpxtDFwRNipbvKCQsf41G5cK6r6+f+RHYVTEs2nA+ZVhYkJRjkZz2ftoGGIKmjqf6Cc73H1xVw9x8VxeVSJSduwe0MwN0K1PpBQ5f9ein2MbL5kdcj36CGpdQ7TJ8HeGxHz8PpRc1lURmrJis1lyZL5Ted9lwVTT9BKbjkjS8wTOT8wjFsdB/3yppl48s3SBbJEaScyc4Uckbwhl1BRiOT7hZ+FNJTsCqg6Bd/OY2K7Wc8LP9p26VAoHhmJQI4EwYisoBClUCPRSQxWeB/9bO2x401MQcjSG+Lrbq5jDns3Mm3Q8TAeqnEnbd0XO8wcLtVVqUFxNT4J5eYKBotDeW1d5V5jIydx0g4jbloJF7HBpOvJ9AdibjjamLqU4EQBte3T3pp/k/2m+lBQ7OXE8ZnyiiYfUo/TTM2+xcE5qQ6ELvccLwc0YJTZc9gar/Cbz6Rtuzy/FQqDSCfILutDS2SasGduSGXz/2MgwZxoC+dO3xJBMQ3FUk3gx5iv0KlMf0UHD3UHKj0FCqGwE/YIS8sWJIZnCGXhGoCcF57E9A36nxeK+PWn8lvZKGQVfI3oWtJT0hoRQHKzfSep2Bwv2SZYiiitYA=
+      on:
+        tags: true
+
+  - os: osx
+    osx_image: xcode6.4
+    compiler: clang
+
+    script:
+      - echo "This script runs coverity..."
+
+    addons:
+      coverity_scan:
+        project:
+          name: "acidanthera/BT4LEContiunityFixup"
+          description: "BT4LEContiunityFixup"
+        notification_email: $NOTIFICATION_EMAIL
+        build_command_prepend: "src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/Lilu/master/Lilu/Scripts/bootstrap.sh) && eval \"$src\" || exit 1"
+        build_command: "xcodebuild -configuration Release"
+        branch_pattern: master

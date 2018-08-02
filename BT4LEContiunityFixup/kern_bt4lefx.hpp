@@ -1,5 +1,5 @@
 //
-//  kern_ngfx.hpp
+//  kern_bt4lefx.hpp
 //  BT4LEContiunityFixup
 //
 //  Copyright © 2017 lvs1974. All rights reserved.
@@ -9,7 +9,6 @@
 #define kern_bt4lefx_hpp
 
 #include <Headers/kern_patcher.hpp>
-
 
 class BT4LEFX {
 public:
@@ -27,31 +26,15 @@ private:
 	 */
 	void processKext(KernelPatcher &patcher, size_t index, mach_vm_address_t address, size_t size);
 
-    
-    /**
-     *  IOBluetoothHostController_SetControllerFeatureFlags
-     */
-    using t_set_controller_feature_flags = int (*) (void *, unsigned int);
-    
-    
-    /**
-     *  Hooked methods / callbacks
-     */
-    static int AppleBroadcomBluetoothHostController_SetControllerFeatureFlags(void *that, unsigned int a2);
-	
-    t_set_controller_feature_flags   orgIOBluetoothHostController_SetControllerFeatureFlags {nullptr};
-    
 	/**
-	 *  Current progress mask
+	 *  Hooked methods / callbacks
 	 */
-	struct ProcessingState {
-		enum {
-			NothingReady = 0,
-			IOBluetoothFamilyPatched = 1,
-			EverythingDone = IOBluetoothFamilyPatched,
-		};
-	};
-    int progressState {ProcessingState::NothingReady};
+	static int AppleBroadcomBluetoothHostController_SetControllerFeatureFlags(void *that, unsigned int a2);
+
+	/**
+	 *  Original method
+	 */
+	mach_vm_address_t orgIOBluetoothHostController_SetControllerFeatureFlags {};
 };
 
 #endif /* kern_bt4lefx_hpp */
