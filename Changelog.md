@@ -1,5 +1,7 @@
 BT4LEContiunityFixup Changelog
 =============================
+#### v1.1.2
+- Try to adapt this kext for <= Yosemite
 
 #### v1.1.1
 - Basic 10.14 compatibility
