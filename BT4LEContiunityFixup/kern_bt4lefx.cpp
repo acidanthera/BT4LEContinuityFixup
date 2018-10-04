@@ -63,14 +63,14 @@ void BT4LEFX::processKext(KernelPatcher &patcher, size_t index, mach_vm_address_
 			}
 		}
 		else {
-			orgIOBluetoothHostController_SetControllerFeatureFlags = patcher.solveSymbol(index, "__ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj", address, size);
-			
-			if (orgIOBluetoothHostController_SetControllerFeatureFlags) {
-				KernelPatcher::RouteRequest request {
-					"__ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj",
-					AppleBroadcomBluetoothHostController_SetControllerFeatureFlags
-				};
-				patcher.routeMultiple(index, &request, 1, address, size);
+			KernelPatcher::RouteRequest request {
+				"__ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj",
+				AppleBroadcomBluetoothHostController_SetControllerFeatureFlags,
+				orgIOBluetoothHostController_SetControllerFeatureFlags
+			};
+			patcher.routeMultiple(index, &request, 1, address, size);
+			if (patcher.getError() == KernelPatcher::Error::NoError) {
+				DBGLOG("bt4lefx", "routed __ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj");
 			} else {
 				SYSLOG("bt4lefx", "failed to resolve __ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj %d", patcher.getError());
 				patcher.clearError();
