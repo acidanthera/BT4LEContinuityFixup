@@ -196,6 +196,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 1C748C1D1C21952C0024EED2;
@@ -363,7 +364,7 @@
 				MODULE_NAME = as.lvs1974.BT4LEContiunityFixup;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.2;
+				MODULE_VERSION = 1.1.3;
 				OTHER_CFLAGS = (
 					"-mmmx",
 					"-msse",
@@ -408,7 +409,7 @@
 				MODULE_NAME = as.lvs1974.BT4LEContiunityFixup;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.2;
+				MODULE_VERSION = 1.1.3;
 				OTHER_CFLAGS = (
 					"-mmmx",
 					"-msse",
