@@ -1,7 +1,7 @@
 BT4LEContinuityFixup
 ===================
 
-[![Build Status](https://travis-ci.org/acidanthera/BT4LEContiunityFixup.svg?branch=master)](https://travis-ci.org/acidanthera/BT4LEContiunityFixup) [![Scan Status](https://scan.coverity.com/projects/16403/badge.svg?flat=1)](https://scan.coverity.com/projects/16403)
+[![Build Status](https://travis-ci.org/acidanthera/BT4LEContinuityFixup.svg?branch=master)](https://travis-ci.org/acidanthera/BT4LEContinuityFixup) [![Scan Status](https://scan.coverity.com/projects/16403/badge.svg?flat=1)](https://scan.coverity.com/projects/16403)
 
 An open source kernel extension providing patches for IOBluetoothFamily.
 
