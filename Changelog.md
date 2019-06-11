@@ -1,7 +1,8 @@
-BT4LEContiunityFixup Changelog
+BT4LEContinuityFixup Changelog
 =============================
 #### v1.1.3
 - Allow loading on 10.15 without `-lilubetaall`
+- Rename BT4LEContiunityFixup to BT4LEContinuityFixup (ticket 375)
 
 #### v1.1.2
 - Try to adapt this kext for <= Yosemite

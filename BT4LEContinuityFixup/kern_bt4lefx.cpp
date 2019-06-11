@@ -1,6 +1,6 @@
 //
 //  kern_bt4lefx.cpp
-//  BT4LEContiunityFixup
+//  BT4LEContinuityFixup
 //
 //  Copyright © 2017 lvs1974. All rights reserved.
 //
