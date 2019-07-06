@@ -1,5 +1,8 @@
 BT4LEContinuityFixup Changelog
 =============================
+#### v1.1.4
+- Unified release archive names
+
 #### v1.1.3
 - Allow loading on 10.15 without `-lilubetaall`
 - Rename BT4LEContiunityFixup to BT4LEContinuityFixup (ticket 375)
