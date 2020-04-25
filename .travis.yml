@@ -58,5 +58,5 @@ matrix:
           description: "BT4LEContiunityFixup"
         notification_email: $NOTIFICATION_EMAIL
         build_command_prepend: "src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/Lilu/master/Lilu/Scripts/bootstrap.sh) && eval \"$src\" || exit 1 ; src=$(/usr/bin/curl -Lfs https://raw.githubusercontent.com/acidanthera/Lilu/master/Lilu/Scripts/covstrap.sh) && eval \"$src\" || exit 1"
-        build_command: "xcodebuild -configuration Release"
+        build_command: "xcodebuild -jobs 1 -configuration Release"
         branch_pattern: master
