@@ -46,35 +46,22 @@ void BT4LEFX::processKext(KernelPatcher &patcher, size_t index, mach_vm_address_
 {
 	if (kextIOBluetooth.loadIndex == index) {
 		DBGLOG("bt4lefx", "%s", kextIOBluetooth.id);
+		
+		const char* symbol = (getKernelVersion() > KernelVersion::Yosemite) ?
+			"__ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj" :
+			"__ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj";
 
-		if (getKernelVersion() > KernelVersion::Yosemite) {
-			orgIOBluetoothHostController_SetControllerFeatureFlags = patcher.solveSymbol(index, "__ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj", address, size);
-			if (orgIOBluetoothHostController_SetControllerFeatureFlags) {
-				DBGLOG("bt4lefx", "obtained __ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj");
-
-				KernelPatcher::RouteRequest request {
-					"__ZN36AppleBroadcomBluetoothHostController25SetControllerFeatureFlagsEj",
-					AppleBroadcomBluetoothHostController_SetControllerFeatureFlags
-				};
-				patcher.routeMultiple(index, &request, 1, address, size);
-			} else {
-				SYSLOG("bt4lefx", "failed to resolve __ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj %d", patcher.getError());
-				patcher.clearError();
-			}
-		}
-		else {
-			KernelPatcher::RouteRequest request {
-				"__ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj",
+		KernelPatcher::RouteRequest request {
+				symbol,
 				AppleBroadcomBluetoothHostController_SetControllerFeatureFlags,
 				orgIOBluetoothHostController_SetControllerFeatureFlags
-			};
-			patcher.routeMultiple(index, &request, 1, address, size);
-			if (patcher.getError() == KernelPatcher::Error::NoError) {
-				DBGLOG("bt4lefx", "routed __ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj");
-			} else {
-				SYSLOG("bt4lefx", "failed to resolve __ZN24IOBluetoothHCIController25SetControllerFeatureFlagsEj %d", patcher.getError());
-				patcher.clearError();
-			}
+		};
+		patcher.routeMultiple(index, &request, 1, address, size);
+		if (patcher.getError() == KernelPatcher::Error::NoError) {
+			DBGLOG("bt4lefx", "routed %s", symbol);
+		} else {
+			SYSLOG("bt4lefx", "failed to resolve %s, error = %d", symbol, patcher.getError());
+			patcher.clearError();
 		}
 	}
 }

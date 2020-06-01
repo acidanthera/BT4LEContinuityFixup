@@ -48,7 +48,7 @@
 		CE405ED21E49F9FC00AA0B3D /* kern_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kern_api.hpp; sourceTree = "<group>"; };
 		CE405ED81E4A080700AA0B3D /* plugin_start.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = plugin_start.cpp; sourceTree = "<group>"; };
 		CE405EDA1E4A080F00AA0B3D /* plugin_start.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = plugin_start.hpp; sourceTree = "<group>"; };
-		F654D35C1F6DA4FF00D29D64 /* kern_bt4lefx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kern_bt4lefx.cpp; sourceTree = "<group>"; };
+		F654D35C1F6DA4FF00D29D64 /* kern_bt4lefx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = kern_bt4lefx.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		F654D35D1F6DA4FF00D29D64 /* kern_bt4lefx.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kern_bt4lefx.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -364,7 +364,7 @@
 				MODULE_NAME = as.lvs1974.BT4LEContinuityFixup;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.4;
+				MODULE_VERSION = 1.1.5;
 				OTHER_CFLAGS = (
 					"-mmmx",
 					"-msse",
@@ -409,7 +409,7 @@
 				MODULE_NAME = as.lvs1974.BT4LEContinuityFixup;
 				MODULE_START = "$(PRODUCT_NAME)_kern_start";
 				MODULE_STOP = "$(PRODUCT_NAME)_kern_stop";
-				MODULE_VERSION = 1.1.4;
+				MODULE_VERSION = 1.1.5;
 				OTHER_CFLAGS = (
 					"-mmmx",
 					"-msse",
