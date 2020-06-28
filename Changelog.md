@@ -2,6 +2,7 @@ BT4LEContinuityFixup Changelog
 =============================
 #### v1.1.5
 - Fix an issue in routing for method __ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj
+- Added constants for 11.0 support
 
 #### v1.1.4
 - Unified release archive names
