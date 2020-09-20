@@ -1,5 +1,8 @@
 BT4LEContinuityFixup Changelog
 =============================
+#### v1.1.6
+- Added MacKernelSDK with Xcode 12 compatibility
+
 #### v1.1.5
 - Fix an issue in routing for method __ZN25IOBluetoothHostController25SetControllerFeatureFlagsEj
 - Added constants for 11.0 support
