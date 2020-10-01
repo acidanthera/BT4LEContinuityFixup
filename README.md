@@ -5,6 +5,9 @@ BT4LEContinuityFixup
 
 An open source kernel extension providing patches for IOBluetoothFamily.
 
+#### Special Notes
+- In lieu of this kext, users are encouraged to test [this patch](https://github.com/acidanthera/bugtracker/issues/1173#issuecomment-702022932). If it functions as expected, this project will be [archived](https://github.com/acidanthera/bugtracker/issues/1173#issuecomment-702074550) and the aforementioned patch should be used instead.
+
 #### Features
 - This tool makes the necessary changes to enable OS X 10.10 and 10.11 Continuity features on compatible hardware. 
 Continuity features activated by this patch include Handoff, Instant Hotspot, and New Airdrop. 
